@@ -59,8 +59,8 @@
                 <div class="profile-details">
                     <img src="./images/user.png" alt="profileImg">
                     <div class="name_job">
-                        <div class="name">Nome do Usuário</div>
-                        <div class="job">Cadeia de Comando</div>
+                        <div class="name">Patrícia</div>
+                        <div class="job">Administrador</div>
                     </div>
                 </div>
                 <a href="index.php" id="log_out">

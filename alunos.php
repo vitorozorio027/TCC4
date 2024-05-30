@@ -1,11 +1,17 @@
 <?php include 'header.php'; ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="assets/css/alunos.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 <section class="home-section">
     <div class="container">
         <div class="text">Cadastro de Alunos</div>
+        <?php if (isset($_GET['msg']) && $_GET['msg'] == 'success'): ?>
+            <div id="alert-success" class="alert alert-success">Aluno adicionado com sucesso!</div>
+        <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'updated'): ?>
+            <div id="alert-success" class="alert alert-success">Aluno atualizado com sucesso!</div>
+        <?php elseif (isset($_GET['msg']) && $_GET['msg'] == 'deleted'): ?>
+            <div id="alert-danger" class="alert alert-danger">Aluno deletado com sucesso!</div>
+        <?php endif; ?>
 
         <div class="row">
             <div class="col-md-6">
@@ -153,35 +159,19 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).ready(function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const msg = urlParams.get('msg');
-
-        if (msg === 'success') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: 'Aluno adicionado com sucesso!',
-                confirmButtonText: 'OK'
-            });
-        } else if (msg === 'updated') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sucesso!',
-                text: 'Aluno atualizado com sucesso!',
-                confirmButtonText: 'OK'
-            });
-        } else if (msg === 'deleted') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Deletado!',
-                text: 'Aluno deletado com sucesso!',
-                confirmButtonText: 'OK'
-            });
+    setTimeout(function () {
+        var alertSuccess = document.getElementById('alert-success');
+        var alertDanger = document.getElementById('alert-danger');
+        if (alertSuccess) {
+            alertSuccess.remove();
         }
+        if (alertDanger) {
+            alertDanger.remove();
+        }
+    }, 5000);
 
+    $(document).ready(function () {
         $('.edit-btn').click(function () {
             var id = $(this).data('id');
             var nome = $(this).data('nome');
